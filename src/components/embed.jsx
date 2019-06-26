@@ -128,7 +128,7 @@ const Embed = ({
 }) => {
   return (
     <div className='accessory'>
-      <div className='embed-wrapper'>
+      <div className='embed-wrapper bg-discord-dark'>
         <EmbedColorPill color={color} />
         <div className='embed embed-rich'>
           <div className='embed-content'>

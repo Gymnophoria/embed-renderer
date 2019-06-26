@@ -36,6 +36,14 @@
   src: url(https://discordapp.com/assets/8e12fb4f14d9c4592eb8ec9f22337b04.woff) format('woff');
 }
 
+/* -- nodisplay -- */
+
+.nodisplay          { display: none; }
+
+/* -- transparent backgrounds -- */
+
+.nobackground       { background-color: transparent !important; }
+
 /* -- colors -- */
 
 .blurple            { color:            #7289DA; }

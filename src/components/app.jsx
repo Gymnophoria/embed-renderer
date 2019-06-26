@@ -190,71 +190,27 @@ const App = React.createClass({
   },
 
   render() {
-    const webhookModeLabel = `${this.state.webhookMode ? 'Dis' : 'En'}able webhook mode`;
-    const themeLabel = `${this.state.darkTheme ? 'Light' : 'Dark'} theme`;
-    const compactModeLabel = `${this.state.compactMode ? 'Cozy' : 'Compact'} mode`;
-    const colorPickerLabel = `${!this.state.colorPickerShowing ? 'Open' : 'Close'} color picker`;
-
-    const colorPicker = this.state.colorPickerShowing ? (
-      <div style={{
-        position: 'absolute',
-        bottom: '45px',
-        marginLeft: '-25px',
-      }}>
-        <SketchPicker
-          color={this.state.embedColor}
-          onChange={this.colorChange}
-          disableAlpha={true}
-        />
-      </div>
-    ) : null;
-    
     return (
-      <main className='vh-100-l bg-blurple open-sans'>
+      <main className='vh-100-l bg-blurple open-sans nobackground'>
 
-        <div className='h-100 flex flex-column'>
-          <section className='flex-l flex-auto'>
-            <div className='vh-100 h-auto-l w-100 w-50-l pa4 pr3-l pb0-l'>
+
+            <div className='vh-100 h-auto-l w-100 w-50-l pa4 pr3-l pb0-l nodisplay'>
               <CodeMirror
                 onChange={this.onCodeChange}
                 value={this.state.input}
                 theme={this.state.darkTheme ? 'one-dark' : 'default'}
               />
             </div>
-            <div className='vh-100 h-auto-l w-100 w-50-l pa4 pl3-l pb0'>
-              <DiscordView
-                data={this.state.data}
-                error={this.state.error}
-                webhookMode={this.state.webhookMode}
-                darkTheme={this.state.darkTheme}
-                compactMode={this.state.compactMode}
-              />
+            <div className='vh-100 h-auto-l w-100 w-100-l'>
+	            <DiscordView
+		            data={this.state.data}
+		            error={this.state.error}
+		            webhookMode={this.state.webhookMode}
+		            darkTheme={this.state.darkTheme}
+		            compactMode={this.state.compactMode}
+	            />
             </div>
-          </section>
 
-          <footer className='w-100 pa3 tc white'>
-            <FooterButton label='Generate code' onClick={this.openCodeModal} />
-            <div style={{ position: 'relative', display: 'inline-block' }}>
-              <FooterButton label={colorPickerLabel} onClick={this.openColorPicker} />
-              {colorPicker}
-            </div>
-            <FooterButton label={webhookModeLabel} onClick={this.toggleWebhookMode} />
-            <FooterButton label={themeLabel} onClick={this.toggleTheme} />
-            <FooterButton label={compactModeLabel} onClick={this.toggleCompactMode} />
-            <FooterButton label='About' onClick={this.openAboutModal} />
-          </footer>
-        </div>
-
-        <ModalContainer
-          yes={this.displayWebhookExample}
-          no={this.dismissWebhookExample}
-          close={this.closeModal}
-          data={this.state.data}
-          webhookMode={this.state.webhookMode}
-          darkTheme={this.state.darkTheme}
-          hasError={this.state.error !== null && this.state.error !== ''}
-          currentModal={this.state.currentModal}
-        />
       </main>
     );
   },

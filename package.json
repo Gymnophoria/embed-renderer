@@ -1,10 +1,10 @@
 {
-  "name": "embed-visualizer",
-  "author": "leovoel",
+  "name": "embed-renderer",
+  "author": "Gymnophoria",
   "license": "MIT",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://leovoel.github.io/embed-visualizer/",
+  "homepage": "https://example.com/embed-renderer/build",
   "devDependencies": {
     "react-scripts": "0.8.5",
     "rimraf": "^2.5.4"

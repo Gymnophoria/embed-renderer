@@ -59,7 +59,7 @@ const CozyMessageHeader = ({ compactMode, username }) => {
     return null;
   }
 
-  return (
+  return null;/*(
     <h2 style={{ lineHeight: '16px' }}>
       <span className='username-wrapper v-btm'>
         <strong className='user-name'>{username}</strong>
@@ -68,7 +68,7 @@ const CozyMessageHeader = ({ compactMode, username }) => {
       <span className='highlight-separator'> - </span>
       <MessageTimestamp compactMode={compactMode} />
     </h2>
-  );
+  );*/
 };
 
 const Avatar = ({ compactMode, url }) => {
@@ -76,7 +76,7 @@ const Avatar = ({ compactMode, url }) => {
     return null;
   }
 
-  return <div className='avatar-large animate' style={{ backgroundImage: `url('${url}')` }} />;
+  return null //<div className='avatar-large animate' style={{ backgroundImage: `url('${url}')` }} />;
 };
 
 const ErrorHeader = ({ error }) => {
@@ -92,11 +92,11 @@ const DiscordViewWrapper = ({ darkTheme, children }) => {
   // we could actually just flatten the styling out on the respective elements,
   // but copying directly from discord is a lot easier than that
   return (
-    <div className='w-100 h-100 overflow-auto pa2 discord-view'>
-      <div className={`flex-vertical whitney ${darkTheme && 'theme-dark'}`}>
-        <div className='chat flex-vertical flex-spacer'>
-          <div className='content flex-spacer flex-horizontal'>
-            <div className='flex-spacer flex-vertical messages-wrapper'>
+    <div className='w-100 h-100 overflow-auto pa2 discord-view nobackground'>
+      <div className={`flex-vertical whitney nobackground ${darkTheme && 'theme-dark'}`}>
+        <div className='chat flex-vertical flex-spacer nobackground'>
+          <div className='content flex-spacer flex-horizontal nobackground'>
+            <div className='flex-spacer flex-vertical messages-wrapper nobackground'>
               <div className='scroller-wrap'>
                 <div className='scroller messages'>
                   {children}
@@ -131,29 +131,35 @@ const DiscordView = React.createClass({
     } = this.props;
 
     const bgColor = darkTheme ? 'bg-discord-dark' : 'bg-discord-light';
-    const cls = `w-100 h-100 br2 flex flex-column white overflow-hidden ${bgColor}`;
+    const cls = `w-100 h-100 br2 flex flex-column white overflow-hidden ${bgColor} nobackground`;
+
+	  /* <Avatar url={avatar_url} compactMode={compactMode} />
+			  <div className='comment'>
+				<div className='message first'>
+				  <CozyMessageHeader username={username} compactMode={compactMode} />
+				  <div className='message-text'>
+					<MessageBody
+					  content={content}
+					  username={username}
+					  compactMode={compactMode}
+					  webhookMode={webhookMode}
+					/>
+				  </div>
+
+				</div>
+
+			  </div>*/
 
     return (
       <div className={cls}>
         <ErrorHeader error={error} />
         <DiscordViewWrapper darkTheme={darkTheme}>
           <div className={`message-group hide-overflow ${compactMode ? 'compact' : ''}`}>
-            <Avatar url={avatar_url} compactMode={compactMode} />
-            <div className='comment'>
-              <div className='message first'>
-                <CozyMessageHeader username={username} compactMode={compactMode} />
-                <div className='message-text'>
-                  <MessageBody
-                    content={content}
-                    username={username}
-                    compactMode={compactMode}
-                    webhookMode={webhookMode}
-                  />
-                </div>
-                {embed ? <Embed {...embed} /> : (embeds && embeds.map((e, i) => <Embed key={i} {...e} />))}
-              </div>
-
-            </div>
+	          <div className='comment'>
+		          <div className='message first'>
+			          {embed ? <Embed {...embed} /> : (embeds && embeds.map((e, i) => <Embed key={i} {...e} />))}
+		          </div>
+	          </div>
           </div>
         </DiscordViewWrapper>
       </div>
